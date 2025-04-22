@@ -2,6 +2,7 @@ import 'package:ecommerce_product_listing_app/common_widgets/custom_textfeild.da
 import 'package:ecommerce_product_listing_app/core/constants/app_assets/assets_icons.dart';
 import 'package:ecommerce_product_listing_app/core/constants/app_colors.dart';
 import 'package:ecommerce_product_listing_app/features/home/presentation/widgets/shimmer_widget.dart';
+import 'package:ecommerce_product_listing_app/features/home/providers/faverotie_provider.dart';
 import 'package:ecommerce_product_listing_app/features/home/providers/products_provider.dart';
 import 'package:ecommerce_product_listing_app/helpers/ui_helper.dart';
 import 'package:flutter/material.dart';
@@ -23,7 +24,6 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   void initState() {
     super.initState();
     ref.read(productProvider.notifier).fetchInitialProducts();
-    
 
     _scrollController.addListener(() {
       if (_scrollController.position.pixels >=
@@ -37,6 +37,8 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   Widget build(BuildContext context) {
     final products = ref.watch(productProvider);
     final isLoading = products.isEmpty;
+    isFav(String productId) =>
+        ref.watch(favoriteProvider.select((fav) => fav[productId] ?? false));
 
     return Scaffold(
       body: SafeArea(
@@ -118,6 +120,12 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                     discountPercentage: product.discountPercentage ?? 0.0,
                     totalReviews: 0,
                     isOutOfStock: product.stock == 0,
+                    isFavorite: isFav(product.id?.toString() ?? ''),
+                    onFavoriteTap: () {
+                      ref
+                          .read(favoriteProvider.notifier)
+                          .toggleFavorite(product.id!);
+                    },
                   );
                 },
               ),
