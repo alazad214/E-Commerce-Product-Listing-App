@@ -1,16 +1,43 @@
 # ecommerce_product_listing_app
 
-A new Flutter project.
+## How I Built It
 
-## Getting Started
+I followed a step-by-step development workflow to build this app from scratch:
 
-This project is a starting point for a Flutter application.
+### Project Setup  
+- Initialized a new Flutter project  
+- Added necessary dependencies like `dio`, `riverpod`, `sqflite` in `pubspec.yaml`  
+- Created folders structure
 
-A few resources to get you started if this is your first Flutter project:
+### UI Development  
+- Implemented the entire UI based on Figma design  
+- Ensured responsiveness across different device sizes
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+### API & Model Setup  
+- Used [DummyJSON API](https://dummyjson.com/products) as backend  
+- Created the product model based on API response  
+- Handled JSON parsing and error handling
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### Local Database (SQLite)  
+- Set up a local database using `sqflite`  
+- Stored fetched products for offline support  
+- Wrote CRUD operations to sync API data with local DB
+
+### State Management (Riverpod)  
+- Used Riverpod for scalable and testable state management  
+- Managed UI states, API states, DB states using Providers
+
+### Pagination  
+- pagination logic  
+
+
+### Search Functionality  
+- Enabled real-time search by product name  
+
+### Sorting  
+- Added sorting options based on price and rating  
+
+### GitHub Workflow  
+- Pushed project to GitHub  
+- Created and worked on multiple branches for features  
+- Followed proper commit messages and PR merging strategy
