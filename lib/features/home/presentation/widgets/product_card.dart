@@ -16,6 +16,7 @@ class ProductCard extends StatelessWidget {
   final num? totalReviews;
   final bool isOutOfStock;
   final VoidCallback? onFavoriteTap;
+  final bool isFavorite;
 
   const ProductCard({
     super.key,
@@ -27,6 +28,7 @@ class ProductCard extends StatelessWidget {
     required this.discountPercentage,
     required this.totalReviews,
     this.isOutOfStock = false,
+    required this.isFavorite,
     this.onFavoriteTap,
   });
 
@@ -72,7 +74,9 @@ class ProductCard extends StatelessWidget {
                 right: 8,
                 child: GestureDetector(
                   onTap: onFavoriteTap,
-                  child: Image.asset(AssetsIcons.favourite2),
+                  child: Image.asset(
+                    isFavorite ? AssetsIcons.favourite : AssetsIcons.favourite2,
+                  ),
                 ),
               ),
               if (isOutOfStock)
