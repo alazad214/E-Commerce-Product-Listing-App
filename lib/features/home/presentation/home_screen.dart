@@ -23,7 +23,6 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   void initState() {
     super.initState();
     ref.read(productProvider.notifier).fetchInitialProducts();
-    
 
     _scrollController.addListener(() {
       if (_scrollController.position.pixels >=
