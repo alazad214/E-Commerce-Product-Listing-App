@@ -2,7 +2,7 @@ import 'package:ecommerce_product_listing_app/features/home/model/product_model.
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 
-class DBHelper {
+class ProdactsDb {
   static Database? _db;
 
   static Future<Database> get database async {

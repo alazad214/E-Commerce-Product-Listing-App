@@ -1,8 +1,7 @@
 import 'dart:developer';
-
 import 'package:ecommerce_product_listing_app/features/home/model/product_model.dart';
-import 'package:ecommerce_product_listing_app/features/home/data/product_service.dart';
-import 'package:ecommerce_product_listing_app/helpers/db_helper.dart';
+import 'package:ecommerce_product_listing_app/features/home/data/service/product_service.dart';
+import 'package:ecommerce_product_listing_app/features/home/data/database/prodacts_db.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final productProvider = StateNotifierProvider<ProductNotifier, List<Products>>((
@@ -23,7 +22,7 @@ class ProductNotifier extends StateNotifier<List<Products>> {
   List<Products> _allProducts = [];
 
   Future<void> fetchInitialProducts() async {
-    final cached = await DBHelper.getProducts();
+    final cached = await ProdactsDb.getProducts();
     if (cached.isNotEmpty) {
       _allProducts = cached;
       state = cached;
@@ -40,7 +39,7 @@ class ProductNotifier extends StateNotifier<List<Products>> {
       _allProducts.addAll(data.products!);
       state = List.from(_allProducts);
 
-      await DBHelper.insertProducts(data.products!);
+      await ProdactsDb.insertProducts(data.products!);
 
       _skip += _limit;
       if (data.products!.length < _limit) {
@@ -68,18 +67,17 @@ class ProductNotifier extends StateNotifier<List<Products>> {
   }
 
   void sortByLowToHigh() {
-  final sorted = [...state]..sort((a, b) => a.price!.compareTo(b.price!));
-  state = sorted;
-}
+    final sorted = [...state]..sort((a, b) => a.price!.compareTo(b.price!));
+    state = sorted;
+  }
 
-void sortByHighToLow() {
-  final sorted = [...state]..sort((a, b) => b.price!.compareTo(a.price!));
-  state = sorted;
-}
+  void sortByHighToLow() {
+    final sorted = [...state]..sort((a, b) => b.price!.compareTo(a.price!));
+    state = sorted;
+  }
 
-void sortByRating() {
-  final sorted = [...state]..sort((b, a) => a.rating!.compareTo(b.rating!));
-  state = sorted;
-}
-
+  void sortByRating() {
+    final sorted = [...state]..sort((b, a) => a.rating!.compareTo(b.rating!));
+    state = sorted;
+  }
 }
