@@ -6,7 +6,7 @@ I followed a step-by-step development workflow to build this app from scratch:
 
 ### Project Setup  
 - Initialized a new Flutter project  
-- Added necessary dependencies like `dio`, `riverpod`, `sqflite` in `pubspec.yaml`  
+- Added necessary dependencies like `dio`, `riverpod`, `sqflite` and `getx` in `pubspec.yaml`  
 - Created folders structure
 
 ### UI Development  
@@ -41,3 +41,9 @@ I followed a step-by-step development workflow to build this app from scratch:
 - Pushed project to GitHub  
 - Created and worked on multiple branches for features  
 - Followed proper commit messages and PR merging strategy
+
+
+![App Screenshot](assets/images/image2.jpg) ![App Screenshot](assets/images/image1.jpg)
+
+![App Screenshot](assets/images/image2.jpg)
+
