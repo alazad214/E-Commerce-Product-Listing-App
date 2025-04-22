@@ -1,7 +1,9 @@
+import 'package:ecommerce_product_listing_app/common_widgets/custom_button.dart';
 import 'package:ecommerce_product_listing_app/core/constants/app_colors.dart';
 import 'package:ecommerce_product_listing_app/core/constants/text_font_style.dart';
 import 'package:ecommerce_product_listing_app/helpers/ui_helper.dart';
 import 'package:flutter/material.dart';
+import 'package:get/route_manager.dart';
 
 void internetPopup(
   BuildContext context,
@@ -15,7 +17,7 @@ void internetPopup(
       return Dialog(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
         child: Container(
-          height: 350,
+          height: 270,
           padding: const EdgeInsets.all(16),
           width: double.infinity,
           decoration: BoxDecoration(
@@ -25,7 +27,7 @@ void internetPopup(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Icon(Icons.wifi_off, color: Colors.red, size: 40),
+              const Icon(Icons.wifi_off, color: Colors.red, size: 60),
               UIHelper.verticalSpace(5),
               Text('Whoops!', style: TextFontStyle.headline16w600c1F2937),
               UIHelper.verticalSpace(10),
@@ -35,38 +37,38 @@ void internetPopup(
                 textAlign: TextAlign.center,
               ),
               UIHelper.verticalSpace(10),
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                  onRetry();
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: AppColors.primaryColor,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8),
+
+              Row(
+                children: [
+                  Expanded(
+                    child: customButton(
+                      name: 'Retry',
+                      onCallBack: () {
+                        Navigator.of(context).pop();
+                        onRetry();
+                      },
+                      context: context,
+                    ),
                   ),
-                ),
-                child: const Text(
-                  'Retry',
-                  style: TextStyle(color: Colors.white),
-                ),
-              ),
-              UIHelper.verticalSpace(10),
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                  onOfflineMode();
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.grey,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8),
+                  UIHelper.horizontalSpace(10),
+                  Expanded(
+                    child: customButton(
+                      name: 'Offline Mode',
+                      onCallBack: () {
+                        Navigator.of(context).pop();
+                        onOfflineMode();
+
+                        Get.snackbar(
+                          'Offline Mode Activated',
+                          'You are now in offline mode.',
+                          backgroundColor: AppColors.primaryColor,
+                          snackPosition: SnackPosition.BOTTOM,
+                        );
+                      },
+                      context: context,
+                    ),
                   ),
-                ),
-                child: const Text(
-                  'Go Offline',
-                  style: TextStyle(color: Colors.white),
-                ),
+                ],
               ),
             ],
           ),

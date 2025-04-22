@@ -103,7 +103,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                   crossAxisCount: 2,
                   crossAxisSpacing: 12,
                   mainAxisSpacing: 12,
-                  childAspectRatio: 0.5,
+                  childAspectRatio: 0.49,
                 ),
                 itemBuilder: (context, index) {
                   if (isLoading) {
@@ -120,11 +120,12 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                     discountPercentage: product.discountPercentage ?? 0.0,
                     totalReviews: 0,
                     isOutOfStock: product.stock == 0,
-                    isFavorite: isFav(product.id?.toString() ?? ''),
+                    isFavorite: isFav((product.id ?? 0).toString()),
+
                     onFavoriteTap: () {
                       ref
                           .read(favoriteProvider.notifier)
-                          .toggleFavorite(product.id!);
+                          .toggleFavorite(product.id!.toString());
                     },
                   );
                 },

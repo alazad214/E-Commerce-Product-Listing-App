@@ -57,7 +57,11 @@ class ProductCard extends StatelessWidget {
                   placeholder:
                       (context, url) => SizedBox(
                         height: 164.h,
-                        child: Center(child: CircularProgressIndicator()),
+                        child: Center(
+                          child: CircularProgressIndicator(
+                            color: AppColors.primaryColor,
+                          ),
+                        ),
                       ),
                   errorWidget:
                       (context, url, error) => SizedBox(

@@ -4,10 +4,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'features/home/presentation/home_screen.dart';
 import 'helpers/internet_checker_helper.dart';
+import 'helpers/orientation_helper.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   Get.put(InternetController());
+  await OrientationHelper.lockPortrait();
   runApp(const MyApp());
 }
 
